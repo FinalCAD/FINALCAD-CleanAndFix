@@ -111,5 +111,57 @@ namespace CleanAndFix.Utils
             else
                 return null;
         }
+
+
+
+
+        /// <summary>Remove layer</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>success</returns>
+        public static bool RemoveLayer(Database database, string layerName)
+        {
+            bool success;
+            using (Transaction transaction = database.TransactionManager.StartTransaction())
+            {
+                success = RemoveLayer(database, transaction, layerName);
+                transaction.Commit();
+            }
+            return success;
+        }
+
+        /// <summary>Remove layer</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>success</returns>
+        public static bool RemoveLayer(Database database, Transaction transaction, string layerName)
+        {
+            LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForWrite) as LayerTable;
+            if (layerTable != null)
+            {
+                return RemoveLayer(transaction, layerTable, layerName);
+            }
+            return false;
+        }
+
+        /// <summary>Remove layer</summary>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerTable">Layer table of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>success</returns>
+        public static bool RemoveLayer(Transaction transaction, LayerTable layerTable, string layerName)
+        {
+            if (layerTable.Has(layerName))
+            {
+                LayerTableRecord layer =
+                    transaction.GetObject(layerTable[layerName], OpenMode.ForWrite) as LayerTableRecord;
+                if (layer != null)
+                    layerTable.Erase();
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
