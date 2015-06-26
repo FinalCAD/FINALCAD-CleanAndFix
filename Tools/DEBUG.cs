@@ -34,7 +34,19 @@ namespace CleanAndFix.Tools
         {
             try
             {
-                Application.ShowAlertDialog(database.Filename);
+                LayerUtils.CreateLayer(database, "Test1");
+                using (Transaction transaction = database.TransactionManager.StartTransaction())
+                {
+                    LayerUtils.CreateLayer(database, transaction, "Test2");
+                    transaction.Commit();
+                }
+
+                using (Transaction transaction = database.TransactionManager.StartTransaction())
+                {
+                    LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
+                    LayerUtils.CreateLayer(transaction, layerTable,  "Test3");
+                    transaction.Commit();
+                }
             }
             catch
             {
