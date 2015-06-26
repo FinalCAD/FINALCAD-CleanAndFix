@@ -1,4 +1,5 @@
-﻿using Autodesk.AutoCAD.DatabaseServices;
+﻿using System;
+using Autodesk.AutoCAD.DatabaseServices;
 
 namespace CleanAndFix.Utils
 {
@@ -9,17 +10,17 @@ namespace CleanAndFix.Utils
         /// <param name="layerName">Layer name to use</param>
         /// <param name="isOff">Define if the layer is off</param>
         /// <param name="isPlottable">Define if the layer is plottable</param>
-        /// <returns></returns>
-        public static ObjectId CreateLayer(Database database, string layerName, bool isOff = false,
+        /// <returns>LayerTableRecord of the new layer</returns>
+        public static LayerTableRecord CreateLayer(Database database, string layerName, bool isOff = false,
             bool isPlottable = true)
         {
-            ObjectId layerId;
+            LayerTableRecord layer;
             using (Transaction transaction = database.TransactionManager.StartTransaction())
             {
-                layerId = CreateLayer(database, transaction, layerName, isOff, isPlottable);
+                layer = CreateLayer(database, transaction, layerName, isOff, isPlottable);
                 transaction.Commit();
             }
-            return layerId;
+            return layer;
         }
 
         /// <summary>Create a new layer on a database</summary>
@@ -28,16 +29,16 @@ namespace CleanAndFix.Utils
         /// <param name="layerName">Layer name to use</param>
         /// <param name="isOff">Define if the layer is off</param>
         /// <param name="isPlottable">Define if the layer is plottable</param>
-        /// <returns></returns>
-        public static ObjectId CreateLayer(Database database, Transaction transaction, string layerName,
+        /// <returns>LayerTableRecord of the new layer</returns>
+        public static LayerTableRecord CreateLayer(Database database, Transaction transaction, string layerName,
             bool isOff = false, bool isPlottable = true)
         {
             LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
             if (layerTable != null)
             {
-                CreateLayer(transaction, layerTable, layerName, isOff, isPlottable);
+                return CreateLayer(transaction, layerTable, layerName, isOff, isPlottable);
             }
-            return ObjectId.Null;
+            return null;
         }
 
         /// <summary>Create a new layer on a database</summary>
@@ -46,8 +47,8 @@ namespace CleanAndFix.Utils
         /// <param name="layerName">Layer name to use</param>
         /// <param name="isOff">Define if the layer is off</param>
         /// <param name="isPlottable">Define if the layer is plottable</param>
-        /// <returns></returns>
-        public static ObjectId CreateLayer(Transaction transaction, LayerTable layerTable, string layerName,
+        /// <returns>LayerTableRecord of the new layer</returns>
+        public static LayerTableRecord CreateLayer(Transaction transaction, LayerTable layerTable, string layerName,
             bool isOff = false, bool isPlottable = true)
         {
             if (!layerTable.Has(layerName))
@@ -60,14 +61,55 @@ namespace CleanAndFix.Utils
                 layerTable.UpgradeOpen();
                 layerTable.Add(layer);
                 transaction.AddNewlyCreatedDBObject(layer, true);
-                return layer.ObjectId;
+                return layer;
             }
             else
             {
-                return layerTable[layerName];
+                return transaction.GetObject(layerTable[layerName], OpenMode.ForWrite) as LayerTableRecord;
             }
         }
 
+        /// <summary>Get layer</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>LayerTableRecord of the layer</returns>
+        public static LayerTableRecord GetLayer(Database database, string layerName)
+        {
+            LayerTableRecord layer;
+            using (Transaction transaction = database.TransactionManager.StartTransaction())
+            {
+                layer = GetLayer(database, transaction, layerName);
+                transaction.Abort();
+            }
+            return layer;
+        }
 
+        /// <summary>Get layer</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>LayerTableRecord of the layer</returns>
+        public static LayerTableRecord GetLayer(Database database, Transaction transaction, string layerName)
+        {
+            LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
+            if (layerTable != null)
+            {
+                return GetLayer(transaction, layerTable, layerName);
+            }
+            return null;
+        }
+
+        /// <summary>Get layer</summary>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerTable">Layer table of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <returns>LayerTableRecord of the layer</returns>
+        public static LayerTableRecord GetLayer(Transaction transaction, LayerTable layerTable, string layerName)
+        {
+            if (layerTable.Has(layerName))
+                return transaction.GetObject(layerTable[layerName], OpenMode.ForWrite) as LayerTableRecord;
+            else
+                return null;
+        }
     }
 }

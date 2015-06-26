@@ -45,11 +45,16 @@ namespace CleanAndFix.Tools
                 {
                     LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
                     LayerUtils.CreateLayer(transaction, layerTable, "Test3");
-                    transaction.Commit();
+                    LayerTableRecord test3 = LayerUtils.GetLayer(transaction, layerTable, "Test3"); 
+                    Application.ShowAlertDialog(test3.Name);
+                    transaction.Abort();
                 }
+                LayerTableRecord test4 = LayerUtils.GetLayer(database, "Test4");
+                Application.ShowAlertDialog(test4.Name);
             }
-            catch
+            catch (Exception e)
             {
+                Application.ShowAlertDialog(e.Message);
                 return false;
             }
             return true;
