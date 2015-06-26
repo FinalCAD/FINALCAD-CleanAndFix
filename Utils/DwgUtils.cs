@@ -22,7 +22,10 @@ namespace CleanAndFix.Utils
         /// <returns>Dwgs of current directory</returns>
         public static string[] GetFolderDwgs(string dwgPath, SearchOption searchOptions)
         {
-            return Directory.GetFiles(Path.GetDirectoryName(dwgPath), "*.dwg", searchOptions);
+            string dir = Path.GetDirectoryName(dwgPath);
+            if (dir != null) 
+                return Directory.GetFiles(dir, "*.dwg", searchOptions);
+            return null;
         }
 
         /// <summary> Get files of all dwgs related to current dwg </summary>
@@ -42,7 +45,7 @@ namespace CleanAndFix.Utils
             for (int i = 0; i < node.NumOut; i++ )
             {
                 XrefGraphNode child = node.Out(i) as XrefGraphNode;
-                if (child.XrefStatus == XrefStatus.Resolved)
+                if (child != null && child.XrefStatus == XrefStatus.Resolved)
                 {
                     files.Add(GetRealPath(child.Database));
                     GetXrefsPath(child, files);
