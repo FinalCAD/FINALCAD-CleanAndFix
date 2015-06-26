@@ -27,7 +27,7 @@ namespace CleanAndFix.Tools
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
 
-            DwgUtils.ExecuteForeach(DebugDwg, DwgUtils.GetRelatedDwgs(DwgUtils.GetRealPath(doc.Database)), false);
+            DwgUtils.ExecuteForeach(DebugDwg, DwgUtils.GetRelatedDwgs(doc.Database), false);
         }
 
         private bool DebugDwg(Database database)

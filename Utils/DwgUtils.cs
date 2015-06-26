@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
 using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
@@ -8,28 +9,46 @@ namespace CleanAndFix.Utils
     public static class DwgUtils
     {
         /// <summary> Get files of the current directory </summary>
-        /// <param name="dwgPath">Path of dwg</param>
+        /// <param name="database">Database of dwg</param>
+        /// <param name="searchOptions">All directory or current directory</param>
         /// <returns>Dwgs of current directory</returns>
-        public static string[] GetFolderDwgs(string dwgPath)
+        public static string[] GetFolderDwgs(Database database, SearchOption searchOptions)
         {
-            throw new NotImplementedException();
+            return GetFolderDwgs(GetRealPath(database), searchOptions);
         }
-
-        /// <summary> Get files of the current directory & sub directories </summary>
+        /// <summary> Get files of the current directory </summary>
         /// <param name="dwgPath">Path of dwg</param>
-        /// <returns>Dwgs of current directory & sub directories</returns>
-        public static string[] GetSubFoldersDwgs(string dwgPath)
+        /// <param name="searchOptions">All directory or current directory</param>
+        /// <returns>Dwgs of current directory</returns>
+        public static string[] GetFolderDwgs(string dwgPath, SearchOption searchOptions)
         {
-            throw new NotImplementedException();
+            return Directory.GetFiles(Path.GetDirectoryName(dwgPath), "*.dwg", searchOptions);
         }
 
         /// <summary> Get files of all dwgs related to current dwg </summary>
-        /// <param name="dwgPath">Path of dwg</param>
+        /// <param name="database">Database of dwg</param>
         /// <returns>dwgs related to current dwg</returns>
-        public static string[] GetRelatedDwgs(string dwgPath)
+        public static string[] GetRelatedDwgs(Database database)
         {
-            return new[] {dwgPath};
-            throw new NotImplementedException();
+            XrefGraph xrefs = database.GetHostDwgXrefGraph(true);
+            GraphNode root = xrefs.RootNode;
+            List<string> files = new List<string>();
+            files.Add(GetRealPath(database));
+            return GetXrefsPath(root, files).ToArray();
+        }
+
+        public static List<string> GetXrefsPath(GraphNode node, List<string> files)
+        {
+            for (int i = 0; i < node.NumOut; i++ )
+            {
+                XrefGraphNode child = node.Out(i) as XrefGraphNode;
+                if (child.XrefStatus == XrefStatus.Resolved)
+                {
+                    files.Add(GetRealPath(child.Database));
+                    GetXrefsPath(child, files);
+                }
+            }
+            return files;
         }
 
         /// <summary> Execute a method for each given file </summary>
@@ -66,7 +85,7 @@ namespace CleanAndFix.Utils
                 }
                 catch (Exception e)
                 {
-                    log += e.Message + "\n";
+                    log += Path.GetFileName(file) + ": " + e.Message + "\n";
                 }
             }
             if (!string.IsNullOrEmpty(log))
@@ -75,6 +94,9 @@ namespace CleanAndFix.Utils
             }
         }
 
+        /// <summary> Get real path of a dwg.</summary>
+        /// <param name="database">Database of dwg</param>
+        /// <returns>Path of dwg</returns>
         public static string GetRealPath(Database database)
         {
             if (!database.Filename.Contains("appdata"))
