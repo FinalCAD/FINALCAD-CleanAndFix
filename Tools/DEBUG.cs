@@ -44,7 +44,7 @@ namespace CleanAndFix.Tools
                 using (Transaction transaction = database.TransactionManager.StartTransaction())
                 {
                     LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
-                    LayerUtils.CreateLayer(transaction, layerTable,  "Test3");
+                    LayerUtils.CreateLayer(transaction, layerTable, "Test3");
                     transaction.Commit();
                 }
             }

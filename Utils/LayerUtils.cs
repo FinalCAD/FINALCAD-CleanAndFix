@@ -4,10 +4,16 @@ namespace CleanAndFix.Utils
 {
     public static class LayerUtils
     {
+        /// <summary>Create a new layer on a database</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <param name="isOff">Define if the layer is off</param>
+        /// <param name="isPlottable">Define if the layer is plottable</param>
+        /// <returns></returns>
         public static ObjectId CreateLayer(Database database, string layerName, bool isOff = false,
             bool isPlottable = true)
         {
-            ObjectId layerId = ObjectId.Null;
+            ObjectId layerId;
             using (Transaction transaction = database.TransactionManager.StartTransaction())
             {
                 layerId = CreateLayer(database, transaction, layerName, isOff, isPlottable);
@@ -16,6 +22,13 @@ namespace CleanAndFix.Utils
             return layerId;
         }
 
+        /// <summary>Create a new layer on a database</summary>
+        /// <param name="database">Database of the dwg</param>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <param name="isOff">Define if the layer is off</param>
+        /// <param name="isPlottable">Define if the layer is plottable</param>
+        /// <returns></returns>
         public static ObjectId CreateLayer(Database database, Transaction transaction, string layerName,
             bool isOff = false, bool isPlottable = true)
         {
@@ -27,6 +40,13 @@ namespace CleanAndFix.Utils
             return ObjectId.Null;
         }
 
+        /// <summary>Create a new layer on a database</summary>
+        /// <param name="transaction">Transaction of the database</param>
+        /// <param name="layerTable">Layer table of the database</param>
+        /// <param name="layerName">Layer name to use</param>
+        /// <param name="isOff">Define if the layer is off</param>
+        /// <param name="isPlottable">Define if the layer is plottable</param>
+        /// <returns></returns>
         public static ObjectId CreateLayer(Transaction transaction, LayerTable layerTable, string layerName,
             bool isOff = false, bool isPlottable = true)
         {
@@ -47,5 +67,7 @@ namespace CleanAndFix.Utils
                 return layerTable[layerName];
             }
         }
+
+
     }
 }
