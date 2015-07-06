@@ -11,7 +11,7 @@ namespace CleanAndFix.Utils
         /// <param name="isOff">Define if the layer is off</param>
         /// <param name="isPlottable">Define if the layer is plottable</param>
         /// <returns>LayerTableRecord of the new layer</returns>
-        public static LayerTableRecord CreateLayer(Database database, string layerName, bool isOff = false,
+        public static ObjectId CreateLayer(Database database, string layerName, bool isOff = false,
             bool isPlottable = true)
         {
             LayerTableRecord layer;
@@ -20,7 +20,7 @@ namespace CleanAndFix.Utils
                 layer = CreateLayer(database, transaction, layerName, isOff, isPlottable);
                 transaction.Commit();
             }
-            return layer;
+            return layer.ObjectId;
         }
 
         /// <summary>Create a new layer on a database</summary>
