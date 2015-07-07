@@ -90,11 +90,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Fix\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="CleanAndFixPlugin.cs" />
+    <Compile Include="Fix\Clean.cs" />
     <Compile Include="GraphicsPlan\Black.cs" />
     <Compile Include="GraphicsPlan\Darker.cs" />
     <Compile Include="GraphicsPlan\Grayscale.cs" />

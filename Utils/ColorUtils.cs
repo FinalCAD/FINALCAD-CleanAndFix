@@ -175,6 +175,5 @@ namespace CleanAndFix.Utils
         {
             return RgbToHslConverter(inputColor.ColorValue.R, inputColor.ColorValue.G, inputColor.ColorValue.B);
         }
-
     }
 }
