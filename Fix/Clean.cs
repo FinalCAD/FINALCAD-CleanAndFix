@@ -42,33 +42,48 @@ namespace CleanAndFix.Fix
                 CleanXrefPdfs(database, transaction);
                 CleanLayers(database, transaction);
                 CleanElements(database, transaction);
+
+                transaction.Commit();
             }
             return true;
         }
 
-        private void CleanElements(Database database, Transaction transaction)
+        private void CleanXrefDwgs(Database database, Transaction transaction)
         {
-            throw new NotImplementedException();
-        }
-
-        private void CleanLayers(Database database, Transaction transaction)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void CleanXrefPdfs(Database database, Transaction transaction)
-        {
-            throw new NotImplementedException();
+            //TODO throw new NotImplementedException();
         }
 
         private void CleanXrefImages(Database database, Transaction transaction)
         {
-            throw new NotImplementedException();
+            //TODO throw new NotImplementedException();
         }
 
-        private void CleanXrefDwgs(Database database, Transaction transaction)
+        private void CleanXrefPdfs(Database database, Transaction transaction)
         {
-            throw new NotImplementedException();
+            //TODO throw new NotImplementedException();
+        }
+
+        private void CleanLayers(Database database, Transaction transaction)
+        {
+            LayerTable layerTable = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
+            if (layerTable == null)
+                return;
+            foreach (ObjectId layerId in layerTable)
+            {
+                LayerTableRecord layer = transaction.GetObject(layerId, OpenMode.ForWrite) as LayerTableRecord;
+                if (layer != null)
+                {
+                    if (layer.IsLocked)
+                        layer.IsLocked = false;
+                    if (layer.IsReconciled == false)
+                        layer.IsReconciled = true;
+                }
+            }
+        }
+
+        private void CleanElements(Database database, Transaction transaction)
+        {
+            //TODO throw new NotImplementedException();
         }
     }
 }
