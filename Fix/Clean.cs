@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Runtime.Versioning;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Runtime;
@@ -50,7 +53,41 @@ namespace CleanAndFix.Fix
 
         private void CleanXrefDwgs(Database database, Transaction transaction)
         {
-            //TODO throw new NotImplementedException();
+            ObjectIdCollection idsToReload = new ObjectIdCollection();
+            string rootPath = DwgUtils.GetRealPath(database);
+
+            XrefGraph xrefGraph = database.GetHostDwgXrefGraph(true);
+            if (xrefGraph.NumNodes - 1 > 0)
+            {
+                IEnumerable<string> dwgsList = DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories);
+                IEnumerable<Tuple<string, string>> dwgTuples =
+                    dwgsList.Select(x => new Tuple<string, string>(Path.GetFileName(x), x)).ToList();
+                for (int i = 1; i < xrefGraph.NumNodes; i++)
+                {
+                    XrefGraphNode child = xrefGraph.GetXrefNode(i);
+                    if (child.XrefStatus != XrefStatus.Resolved)
+                    {
+                        if (child.XrefStatus == XrefStatus.FileNotFound || child.XrefStatus == XrefStatus.Unresolved)
+                        {
+                            BlockTableRecord xrefRecord =
+                                transaction.GetObject(child.BlockTableRecordId, OpenMode.ForWrite) as BlockTableRecord;
+                        }
+                        else if (child.XrefStatus == XrefStatus.Unloaded)
+                        {
+                            idsToReload.Add(child.BlockTableRecordId);
+                        }
+                        else if (child.XrefStatus == XrefStatus.Unreferenced)
+                        {
+                            database.DetachXref(child.BlockTableRecordId);
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool FindDwgPath(IEnumerable<Tuple<string, string>> dwgTuples, string rootPath, string xrefPath)
+        {
+            throw new NotImplementedException();
         }
 
         private void CleanXrefImages(Database database, Transaction transaction)
