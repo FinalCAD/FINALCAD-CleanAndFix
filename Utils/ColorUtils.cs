@@ -116,7 +116,6 @@ namespace CleanAndFix.Utils
             float red = 0;
             float green = 0;
             float blue = 0;
-
             float c = (1 - Math.Abs(2 * lightness - 1)) * saturation;
             float x = c * (1 - Math.Abs((hue / 60) % 2 - 1));
             float m = (lightness - c / 2) * 255.0F;
@@ -126,28 +125,24 @@ namespace CleanAndFix.Utils
                 green = 255 * x;
                 blue = 0;
             }
-
             else if (hue >= 60 && hue < 120)
             {
                 red = 255 * x;
                 green = 255 * c;
                 blue = 0;
             }
-
             else if (hue >= 120 && hue < 180)
             {
                 red = 0;
                 green = 255 * c;
                 blue = 255 * x;
             }
-
             else if (hue >= 180 && hue < 240)
             {
                 red = 0;
                 green = 255 * x;
                 blue = 255 * c;
             }
-
             else if (hue >= 240 && hue < 300)
             {
                 red = 255 * x;
@@ -175,6 +170,5 @@ namespace CleanAndFix.Utils
         {
             return RgbToHslConverter(inputColor.ColorValue.R, inputColor.ColorValue.G, inputColor.ColorValue.B);
         }
-
     }
 }
