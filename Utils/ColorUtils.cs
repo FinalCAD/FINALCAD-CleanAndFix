@@ -9,8 +9,9 @@ namespace CleanAndFix.Utils
         public static void ProcessingDwgsColor(Database database, Transaction transaction, Func<Color, Color> colorFunc)
         {
             Transparency trans = new Transparency(255);
-
             BlockTable blockTb = transaction.GetObject(database.BlockTableId, OpenMode.ForRead) as BlockTable;
+            if (blockTb == null)
+                return;
             ObjectId msId = blockTb[BlockTableRecord.ModelSpace];
 
             LayerTable layerTb = transaction.GetObject(database.LayerTableId, OpenMode.ForRead) as LayerTable;
@@ -54,10 +55,9 @@ namespace CleanAndFix.Utils
                 if (entId == ObjectId.Null)
                     return;
                 Entity entity = transaction.GetObject(entId, OpenMode.ForRead) as Entity;
-                RotatedDimension dim = entity as RotatedDimension;
-
                 if (entity == null)
                     continue;
+                RotatedDimension dim = entity as RotatedDimension;
                 BlockReference blockRef = entity as BlockReference;
                 if (blockRef != null)
                     ProcessingDwgsColorEntities(blockRef.BlockTableRecord, transaction, colorFunc);
