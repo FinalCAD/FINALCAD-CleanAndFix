@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.Versioning;
+﻿using System.IO;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Runtime;
@@ -17,7 +13,7 @@ namespace CleanAndFix.Fix
 {
     class Clean
     {
-        [CommandMethod("Fix", "CLEAN", CommandFlags.Transparent), UsedImplicitly]
+        [CommandMethod("Fix", "FCCLEAN", CommandFlags.Transparent), UsedImplicitly]
         public void CleanCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -27,7 +23,7 @@ namespace CleanAndFix.Fix
                 Application.ShowAlertDialog("An error occurred!"); 
         }
 
-        [CommandMethod("Fix", "CLEANALL", CommandFlags.Transparent), UsedImplicitly]
+        [CommandMethod("Fix", "FCCLEANALL", CommandFlags.Transparent), UsedImplicitly]
         public void CleanAllCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -40,65 +36,74 @@ namespace CleanAndFix.Fix
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())
             {
-                CleanXrefDwgs(database, transaction);
-                CleanXrefImages(database, transaction);
-                CleanXrefPdfs(database, transaction);
                 CleanLayers(database, transaction);
-                CleanElements(database, transaction);
-
+                EraseProxies(database);
+                CleanEntities(database, transaction);
                 transaction.Commit();
             }
             return true;
         }
 
-        private void CleanXrefDwgs(Database database, Transaction transaction)
+        private void EraseProxies(Database db)
         {
-            ObjectIdCollection idsToReload = new ObjectIdCollection();
-            string rootPath = DwgUtils.GetRealPath(database);
-
-            XrefGraph xrefGraph = database.GetHostDwgXrefGraph(true);
-            if (xrefGraph.NumNodes - 1 > 0)
+            RXClass zombieEntity = RXObject.GetClass(typeof(ProxyEntity));
+            RXClass zombieObject = RXObject.GetClass(typeof(ProxyObject));
+            ObjectId id;
+            for (long l = db.BlockTableId.Handle.Value; l < db.Handseed.Value; l++)
             {
-                IEnumerable<string> dwgsList = DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories);
-                IEnumerable<Tuple<string, string>> dwgTuples =
-                    dwgsList.Select(x => new Tuple<string, string>(Path.GetFileName(x), x)).ToList();
-                for (int i = 1; i < xrefGraph.NumNodes; i++)
+                if (!db.TryGetObjectId(new Handle(l), out id))
+                    continue;
+                if (id.ObjectClass.IsDerivedFrom(zombieObject) && !id.IsErased)
                 {
-                    XrefGraphNode child = xrefGraph.GetXrefNode(i);
-                    if (child.XrefStatus != XrefStatus.Resolved)
+                    try
                     {
-                        if (child.XrefStatus == XrefStatus.FileNotFound || child.XrefStatus == XrefStatus.Unresolved)
+                        using (DBObject proxy = id.Open(OpenMode.ForWrite))
                         {
-                            BlockTableRecord xrefRecord =
-                                transaction.GetObject(child.BlockTableRecordId, OpenMode.ForWrite) as BlockTableRecord;
-                        }
-                        else if (child.XrefStatus == XrefStatus.Unloaded)
-                        {
-                            idsToReload.Add(child.BlockTableRecordId);
-                        }
-                        else if (child.XrefStatus == XrefStatus.Unreferenced)
-                        {
-                            database.DetachXref(child.BlockTableRecordId);
+                            proxy.Erase();
                         }
                     }
+                    catch
+                    {
+                        using (DBDictionary newDict = new DBDictionary())
+                        using (DBObject proxy = id.Open(OpenMode.ForWrite))
+                        {
+                            try
+                            {
+                                proxy.HandOverTo(newDict, true, true);
+                            }
+                            catch { }
+                        }
+                    }
+                }
+                else if (id.ObjectClass.IsDerivedFrom(zombieEntity) && !id.IsErased)
+                {
+                    try
+                    {
+                        using (DBObject proxy = id.Open(OpenMode.ForWrite))
+                        {
+                            proxy.Erase();
+                        }
+                    }
+                    catch { }
                 }
             }
         }
 
-        private bool FindDwgPath(IEnumerable<Tuple<string, string>> dwgTuples, string rootPath, string xrefPath)
+        private void CleanEntities(Database database, Transaction transaction)
         {
-            throw new NotImplementedException();
+            EntityUtils.ProcessingDwgs(database, transaction, CleanEntity);
         }
 
-        private void CleanXrefImages(Database database, Transaction transaction)
+        Entity CleanEntity(Entity entity)
         {
-            //TODO throw new NotImplementedException();
+            MText mText = entity as MText;
+            if (mText != null)
+            {
+                mText.Contents = mText.Text;
+            }
+            return entity;
         }
 
-        private void CleanXrefPdfs(Database database, Transaction transaction)
-        {
-            //TODO throw new NotImplementedException();
-        }
 
         private void CleanLayers(Database database, Transaction transaction)
         {
@@ -116,11 +121,6 @@ namespace CleanAndFix.Fix
                         layer.IsReconciled = true;
                 }
             }
-        }
-
-        private void CleanElements(Database database, Transaction transaction)
-        {
-            //TODO throw new NotImplementedException();
         }
     }
 }
