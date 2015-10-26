@@ -104,7 +104,6 @@
     <Compile Include="Utils\EditorUtils.cs" />
     <Compile Include="Tools\LayerFilter.cs" />
     <Compile Include="Tools\MergeEntities.cs" />
-    <Compile Include="Tools\TextProcessing.cs" />
     <Compile Include="Utils\ColorUtils.cs" />
     <Compile Include="Utils\DwgUtils.cs" />
     <Compile Include="Utils\EntityUtils.cs" />

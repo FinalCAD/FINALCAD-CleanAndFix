@@ -1,4 +1,4 @@
-﻿// (C) Copyright 2015 by  Knowledge Corp
+﻿// (C) Copyright 2015 by Knowledge Corp
 //
 
 using Autodesk.AutoCAD.Runtime;
