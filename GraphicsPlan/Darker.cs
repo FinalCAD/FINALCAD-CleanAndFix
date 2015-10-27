@@ -15,7 +15,7 @@ namespace CleanAndFix.GraphicsPlan
     {
         private const float MaxLightness = 0.30F;
 
-        [CommandMethod("GRAPHICSPLAN", "DARKER", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCDARKER", CommandFlags.Modal), UsedImplicitly]
         public void DarkerCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -25,7 +25,7 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "DARKERALL", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCDARKERALL", CommandFlags.Modal), UsedImplicitly]
         public void DarkerAllCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;

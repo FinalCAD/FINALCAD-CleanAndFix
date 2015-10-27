@@ -14,7 +14,7 @@ namespace CleanAndFix.GraphicsPlan
 {
     class Black
     {
-        [CommandMethod("GRAPHICSPLAN", "BLACK", CommandFlags.Transparent), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCBLACK", CommandFlags.Transparent), UsedImplicitly]
         public void BlackCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -24,7 +24,7 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("An error occurred!"); 
         }
 
-        [CommandMethod("GRAPHICSPLAN", "BLACKALL", CommandFlags.Transparent), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCBLACKALL", CommandFlags.Transparent), UsedImplicitly]
         public void BlackAllCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;

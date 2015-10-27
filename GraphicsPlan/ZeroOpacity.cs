@@ -13,7 +13,7 @@ namespace CleanAndFix.GraphicsPlan
 {
     class ZeroOpacity
     {
-        [CommandMethod("GRAPHICSPLAN", "ZEROOPACITY", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCZEROOPACITY", CommandFlags.Modal), UsedImplicitly]
         public void ZeroOpacityCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -23,7 +23,7 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "ZEROOPACITYALL", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCZEROOPACITYALL", CommandFlags.Modal), UsedImplicitly]
         public void ZeroOpacityAllCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;

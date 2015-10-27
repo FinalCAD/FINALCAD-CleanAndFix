@@ -13,7 +13,7 @@ namespace CleanAndFix.GraphicsPlan
 {
     class Grayscale
     {
-        [CommandMethod("GRAPHICSPLAN", "GRAYSCALE", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCGRAYSCALE", CommandFlags.Modal), UsedImplicitly]
         public void GrayscaleCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -23,7 +23,7 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "GRAYSCALEALL", CommandFlags.Modal), UsedImplicitly]
+        [CommandMethod("GRAPHICSPLAN", "FCGRAYSCALEALL", CommandFlags.Modal), UsedImplicitly]
         public void GrayscaleAllCommand()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
