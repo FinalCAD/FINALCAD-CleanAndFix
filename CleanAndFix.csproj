@@ -73,11 +73,15 @@
     <!--ACA Refences End-->
     <!--AME Referebces Begin-->
     <!--AME Reference End-->
+    <Reference Include="AcWindows, Version=20.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="AdWindows, Version=5.2.10.200, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>4.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>4.5</RequiredTargetFramework>
     </Reference>
@@ -101,6 +105,7 @@
     <Compile Include="GraphicsPlan\ZeroOpacity.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RibbonManager.cs" />
     <Compile Include="Utils\EditorUtils.cs" />
     <Compile Include="Tools\LayerFilter.cs" />
     <Compile Include="Tools\MergeEntities.cs" />
