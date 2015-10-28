@@ -1,5 +1,4 @@
-﻿using System;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using Autodesk.AutoCAD.DatabaseServices;
 
 namespace CleanAndFix.Utils
 {
@@ -111,9 +110,6 @@ namespace CleanAndFix.Utils
             else
                 return null;
         }
-
-
-
 
         /// <summary>Remove layer</summary>
         /// <param name="database">Database of the dwg</param>

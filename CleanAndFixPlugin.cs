@@ -1,15 +1,7 @@
 ﻿// (C) Copyright 2015 by Knowledge Corp
 
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Reflection;
-using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Ribbon;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.Windows;
