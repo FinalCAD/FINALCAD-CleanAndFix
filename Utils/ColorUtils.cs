@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Windows.Documents;
 using Autodesk.AutoCAD.Colors;
 using Autodesk.AutoCAD.DatabaseServices;
 
@@ -8,6 +10,7 @@ namespace CleanAndFix.Utils
     {
         public static void ProcessingDwgsColor(Database database, Transaction transaction, Func<Color, Color> colorFunc)
         {
+            List<LayerTableRecord> layerToLock = new List<LayerTableRecord>();
             Transparency trans = new Transparency(255);
             BlockTable blockTb = transaction.GetObject(database.BlockTableId, OpenMode.ForRead) as BlockTable;
             if (blockTb == null)
@@ -18,25 +21,30 @@ namespace CleanAndFix.Utils
             if (layerTb == null)
                 return;
 
-            ProcessingDwgsColorEntities(msId, transaction, colorFunc);
             foreach (ObjectId layerId in layerTb)
             {
                 LayerTableRecord layer = transaction.GetObject(layerId, OpenMode.ForWrite) as LayerTableRecord;
                 if (layer != null)
                 {
+                    if (layer.IsLocked)
+                    {
+                        layerToLock.Add(layer);
+                        layer.IsLocked = false;
+                    }
                     layer.Color = colorFunc(layer.Color);
                     if (layer.Transparency != trans)
                         layer.Transparency = trans;
                 }
-            }
+            } 
+            ProcessingDwgsColorEntities(msId, transaction, colorFunc);
             BlockTable blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead) as BlockTable;
             if (blockTable != null)
             {
                 foreach (ObjectId blockId in blockTable)
-                {
                     ProcessingDwgsColorEntities(blockId, transaction, colorFunc);
-                }
             }
+            foreach (LayerTableRecord layer in layerToLock)
+                layer.IsLocked = true;
         }
 
         private static void ProcessingDwgsColorEntities(ObjectId btrId, Transaction transaction,
@@ -62,9 +70,7 @@ namespace CleanAndFix.Utils
                 if (blockRef != null)
                     ProcessingDwgsColorEntities(blockRef.BlockTableRecord, transaction, colorFunc);
                 else
-                {
                     ProcessingEntityColor(colorFunc, entity, trans, dim);
-                }
             }
         }
 

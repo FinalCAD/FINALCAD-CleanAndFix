@@ -21,7 +21,8 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             List<ObjectId> textsId = EditorUtils.GetMultipleElementId(doc, "Select text to merge\n", typeof(MText), typeof(DBText));
-            MergeTextDwg(database, textsId);
+            if (textsId != null)
+                MergeTextDwg(database, textsId);
         }
 
         private void MergeTextDwg(Database database, List<ObjectId> textsId)

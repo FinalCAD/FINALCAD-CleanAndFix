@@ -23,8 +23,11 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
-            _display = true;
-            FilterDwg(database);
+            if (_layerName != null)
+            {
+                _display = true;
+                FilterDwg(database);
+            }
         }
 
         [CommandMethod("Fix", "FCFILTERAll", CommandFlags.Transparent), UsedImplicitly]
@@ -34,8 +37,11 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
-            _display = true;
-            DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
+            if (_layerName != null)
+            {
+                _display = true;
+                DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
+            }
         }
 
         [CommandMethod("Fix", "FCRFILTER", CommandFlags.Transparent), UsedImplicitly]
@@ -45,8 +51,11 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
-            _display = false;
-            FilterDwg(database);
+            if (_layerName != null)
+            {
+                _display = false;
+                FilterDwg(database);
+            }
         }
 
         [CommandMethod("Fix", "FCRFILTERAll", CommandFlags.Transparent), UsedImplicitly]
@@ -56,8 +65,11 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
-            _display = false;
-            DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
+            if (_layerName != null)
+            {
+                _display = false;
+                DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
+            }
         }
 
         private bool FilterDwg(Database database)

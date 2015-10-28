@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Autodesk.Windows;
+using CleanAndFix.Properties;
 
 namespace CleanAndFix
 {
@@ -13,9 +14,9 @@ namespace CleanAndFix
         {
             RibbonButton cleanButton = new RibbonButton();
             cleanButton.IsToolTipEnabled = true;
-            cleanButton.ToolTip = "Clean the drawing and unlock all layer";
+            cleanButton.ToolTip = "Clean the drawing and unlock all layers";
             cleanButton.Orientation = Orientation.Vertical;
-            //finalBrowserButton.LargeImage = ToBitmapImage(Resources.browser);
+            cleanButton.LargeImage = ToBitmapImage(Resource.Clean);
             cleanButton.Size = RibbonItemSize.Large;
             cleanButton.Text = "Clean";
             cleanButton.CommandParameter = "FCCLEAN";
@@ -27,9 +28,9 @@ namespace CleanAndFix
             dyn2StaticButton.IsToolTipEnabled = true;
             dyn2StaticButton.ToolTip = "Remove all dynamic data in the drawing";
             dyn2StaticButton.Orientation = Orientation.Vertical;
-            //dyn2staticButton.LargeImage = ToBitmapImage(Resources.commands);
+            dyn2StaticButton.LargeImage = ToBitmapImage(Resource.Dynamic2Static);
             dyn2StaticButton.Size = RibbonItemSize.Large;
-            dyn2StaticButton.Text = "Dyn2Static";
+            dyn2StaticButton.Text = "Dynamic\n2 Static";
             dyn2StaticButton.CommandParameter = "FCDYNTOSTATIC";
             dyn2StaticButton.ShowText = true;
             dyn2StaticButton.CommandHandler = new AdskCommandHandler();
@@ -37,9 +38,9 @@ namespace CleanAndFix
 
             RibbonButton blackButton = new RibbonButton();
             blackButton.IsToolTipEnabled = true;
-            blackButton.ToolTip = "Change all drawing to black";
+            blackButton.ToolTip = "Change colors to black";
             blackButton.Orientation = Orientation.Vertical;
-            //blackButton.LargeImage = ToBitmapImage(Resources.commands);
+            blackButton.LargeImage = ToBitmapImage(Resource.Black);
             blackButton.Size = RibbonItemSize.Large;
             blackButton.Text = "Black";
             blackButton.CommandParameter = "FCBLACK";
@@ -47,11 +48,23 @@ namespace CleanAndFix
             blackButton.CommandHandler = new AdskCommandHandler();
             blackButton.MinWidth = 50;
 
+            RibbonButton darkerButton = new RibbonButton();
+            darkerButton.IsToolTipEnabled = true;
+            darkerButton.ToolTip = "Change colors to darker one";
+            darkerButton.Orientation = Orientation.Vertical;
+            darkerButton.LargeImage = ToBitmapImage(Resource.Darker);
+            darkerButton.Size = RibbonItemSize.Large;
+            darkerButton.Text = "Darker";
+            darkerButton.CommandParameter = "FCDARKER";
+            darkerButton.ShowText = true;
+            darkerButton.CommandHandler = new AdskCommandHandler();
+            darkerButton.MinWidth = 50;
+
             RibbonButton grayscaleButton = new RibbonButton();
             grayscaleButton.IsToolTipEnabled = true;
-            grayscaleButton.ToolTip = "Change all drawing to grayscale";
+            grayscaleButton.ToolTip = "Change colors to grayscale";
             grayscaleButton.Orientation = Orientation.Vertical;
-            //grayscale.LargeImage = ToBitmapImage(Resources.commands);
+            grayscaleButton.LargeImage = ToBitmapImage(Resource.Grayscale);
             grayscaleButton.Size = RibbonItemSize.Large;
             grayscaleButton.Text = "Grayscale";
             grayscaleButton.CommandParameter = "FCGRAYSCALE";
@@ -59,25 +72,13 @@ namespace CleanAndFix
             grayscaleButton.CommandHandler = new AdskCommandHandler();
             grayscaleButton.MinWidth = 50;
 
-            RibbonButton darkerButton = new RibbonButton();
-            darkerButton.IsToolTipEnabled = true;
-            darkerButton.ToolTip = "Change all drawing to darker";
-            darkerButton.Orientation = Orientation.Vertical;
-            //darker.LargeImage = ToBitmapImage(Resources.commands);
-            darkerButton.Size = RibbonItemSize.Large;
-            darkerButton.Text = "darker";
-            darkerButton.CommandParameter = "FCDARKER";
-            darkerButton.ShowText = true;
-            darkerButton.CommandHandler = new AdskCommandHandler();
-            darkerButton.MinWidth = 50;
-
             RibbonButton zeroopacityButton = new RibbonButton();
             zeroopacityButton.IsToolTipEnabled = true;
-            zeroopacityButton.ToolTip = "Change all drawing to zeroopacity";
+            zeroopacityButton.ToolTip = "Remove all transparencies";
             zeroopacityButton.Orientation = Orientation.Vertical;
-            //zeroopacity.LargeImage = ToBitmapImage(Resources.commands);
+            zeroopacityButton.LargeImage = ToBitmapImage(Resource.ZeroOpacity);
             zeroopacityButton.Size = RibbonItemSize.Large;
-            zeroopacityButton.Text = "zeroopacity";
+            zeroopacityButton.Text = "Zero\nOpacity";
             zeroopacityButton.CommandParameter = "FCZEROOPACITY";
             zeroopacityButton.ShowText = true;
             zeroopacityButton.CommandHandler = new AdskCommandHandler();
@@ -85,35 +86,35 @@ namespace CleanAndFix
 
             RibbonButton layerFilterButton = new RibbonButton();
             layerFilterButton.IsToolTipEnabled = true;
-            layerFilterButton.ToolTip = "";//TODO
+            layerFilterButton.ToolTip = "Turn on all layer contain the specified keword";
             layerFilterButton.Orientation = Orientation.Vertical;
-            //layerFilter .LargeImage = ToBitmapImage(Resources.commands);
+            layerFilterButton.LargeImage = ToBitmapImage(Resource.LayerFilter);
             layerFilterButton.Size = RibbonItemSize.Large;
-            layerFilterButton.Text = "layerFilter";
-            layerFilterButton.CommandParameter = "FCLAYERFILTER";
+            layerFilterButton.Text = "Layer filter";
+            layerFilterButton.CommandParameter = "FCFILTER";
             layerFilterButton.ShowText = true;
             layerFilterButton.CommandHandler = new AdskCommandHandler();
             layerFilterButton.MinWidth = 50;
 
             RibbonButton reverseLayerFilterButton = new RibbonButton();
             reverseLayerFilterButton.IsToolTipEnabled = true;
-            reverseLayerFilterButton.ToolTip = ""; //TODO
+            reverseLayerFilterButton.ToolTip = "Turn off all layer contain the specified keword";
             reverseLayerFilterButton.Orientation = Orientation.Vertical;
-            //reverseLayerFilter .LargeImage = ToBitmapImage(Resources.commands);
+            reverseLayerFilterButton.LargeImage = ToBitmapImage(Resource.ReverseLayerFilter);
             reverseLayerFilterButton.Size = RibbonItemSize.Large;
-            reverseLayerFilterButton.Text = "reverseLayerFilter";
-            reverseLayerFilterButton.CommandParameter = "FCREVERSELAYERFILTER";
+            reverseLayerFilterButton.Text = "Reverse\nLayer filter";
+            reverseLayerFilterButton.CommandParameter = "FCRFILTER";
             reverseLayerFilterButton.ShowText = true;
             reverseLayerFilterButton.CommandHandler = new AdskCommandHandler();
             reverseLayerFilterButton.MinWidth = 50;
 
             RibbonButton mergeTextButton = new RibbonButton();
             mergeTextButton.IsToolTipEnabled = true;
-            mergeTextButton.ToolTip = "";//TODO
+            mergeTextButton.ToolTip = "Merge all selected text to a new one";
             mergeTextButton.Orientation = Orientation.Vertical;
-            //mergeText.LargeImage = ToBitmapImage(Resources.commands);
+            mergeTextButton.LargeImage = ToBitmapImage(Resource.MergeText);
             mergeTextButton.Size = RibbonItemSize.Large;
-            mergeTextButton.Text = "mergeText";
+            mergeTextButton.Text = "Merge\nTexts";
             mergeTextButton.CommandParameter = "FCMERGETEXT";
             mergeTextButton.ShowText = true;
             mergeTextButton.CommandHandler = new AdskCommandHandler();

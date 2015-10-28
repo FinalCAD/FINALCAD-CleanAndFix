@@ -94,7 +94,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Compile Include="CleanAndFixPlugin.cs" />
     <Compile Include="Fix\Clean.cs" />
@@ -105,6 +104,11 @@
     <Compile Include="GraphicsPlan\ZeroOpacity.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
     <Compile Include="RibbonManager.cs" />
     <Compile Include="Utils\EditorUtils.cs" />
     <Compile Include="Tools\LayerFilter.cs" />
@@ -135,6 +139,42 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\Clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\Dynamic2Static.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\Black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\Darker.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\Grayscale.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\ZeroOpacity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\LayerFilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\ReverseLayerFilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ribbon\MergeText.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
