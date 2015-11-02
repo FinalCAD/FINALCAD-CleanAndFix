@@ -6,7 +6,7 @@ AutoCAD plugin can be found here: https://apps.autodesk.com/ACD/fr/Detail/Index?
 
 ## General Usage Instructions
 
-FINALCAD Clean & Fix will allow a user to work with from an external drawing in the quickest way.
+FINALCAD Clean & Fix will allow a user to work with an external drawing in the quickest way.
 If the user need to do some modification on the plan, the FCCLEAN command will allow to erase all potential errors.
 DARKER, BLACK, GRAYSCALE and ZEROOPACITY is usefull if you need to have a bette view before a ploting on paper, and working with a white background.
 
@@ -35,4 +35,3 @@ http://www.finalcad.com/
 
 ###Support Information
 Email: autodesk@finalcad.com
-Github: https://github.com/FinalCAD/FINALCAD-CleanAndFix/issues
