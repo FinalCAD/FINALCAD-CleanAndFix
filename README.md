@@ -1,5 +1,5 @@
 # FINALCAD-CleanAndFix
-AutoCAD plugin with usefull commands to clean and fix plans.
+AutoCAD plugin with useful commands to clean and fix plans.
 
 FINALCAD provides free of charge and as open source software, the “Clean & Fix” plugin, allowing the cleaning and readability enhancements for any kind of AutoCAD blueprint.
 AutoCAD plugin can be found here: https://apps.autodesk.com/ACD/fr/Detail/Index?id=appstore.exchange.autodesk.com%3afinalcadcleanfix_windows32and64%3aen
