@@ -34,7 +34,7 @@ namespace CleanAndFix.Utils
                     if (layer.Transparency != trans)
                         layer.Transparency = trans;
                 }
-            } 
+            }
             ProcessingDwgsColorEntities(msId, transaction, colorFunc);
             BlockTable blockTable = transaction.GetObject(database.BlockTableId, OpenMode.ForRead) as BlockTable;
             if (blockTable != null)

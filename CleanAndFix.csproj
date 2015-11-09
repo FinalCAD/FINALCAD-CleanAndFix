@@ -115,7 +115,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Include="RibbonManager.cs" />
     <Compile Include="Utils\EditorUtils.cs" />
     <Compile Include="Tools\LayerFilter.cs" />
     <Compile Include="Tools\MergeEntities.cs" />
