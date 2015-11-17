@@ -117,32 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\Black.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Clean" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\Clean.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Darker" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\Darker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Dynamic2Static" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\Dynamic2Static.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Grayscale" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\Grayscale.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LayerFilter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\LayerFilter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MergeText" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\MergeText.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ReverseLayerFilter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\ReverseLayerFilter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ZeroOpacity" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Ribbon\ZeroOpacity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

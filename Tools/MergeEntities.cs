@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Common;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
@@ -21,7 +22,7 @@ namespace CleanAndFix.Tools
             Database database = doc.Database;
 
             List<ObjectId> textsId = EditorUtils.GetMultipleElementId(doc, "Select text to merge\n", typeof(MText), typeof(DBText));
-            if (textsId != null)
+            if (textsId != null && textsId.Count > 0)
                 MergeTextDwg(database, textsId);
         }
 
@@ -34,18 +35,26 @@ namespace CleanAndFix.Tools
 
                 Point3d pos;
                 string message = GetPosAndMessageFromTexts(textsId, transaction, out pos);
-                MText mtext = transaction.GetObject(textsId[0], OpenMode.ForWrite) as MText;
+                MText mtext = transaction.GetObject(textsId[0], OpenMode.ForRead) as MText;
+                MText newMText = new MText();
                 if (mtext != null)
-                {
-                    MText newMText = new MText();
                     newMText.CopyFrom(mtext);
-                    newMText.Contents = message;
-                    newMText.Location = pos;
-
-                    if (blockTableRecord != null)
-                        blockTableRecord.AppendEntity(newMText);
-                    transaction.AddNewlyCreatedDBObject(newMText, true);
+                else
+                {
+                    DBText dbText = transaction.GetObject(textsId[0], OpenMode.ForRead) as DBText;
+                    if (dbText != null)
+                    {
+                        newMText.Layer = dbText.Layer;
+                        newMText.TextHeight = dbText.Height;
+                        newMText.Color = dbText.Color;
+                    }
                 }
+                newMText.Contents = message;
+                newMText.Location = pos;
+
+                if (blockTableRecord != null)
+                    blockTableRecord.AppendEntity(newMText);
+                transaction.AddNewlyCreatedDBObject(newMText, true);
                 transaction.Commit();
             }
         }
