@@ -64,7 +64,7 @@ namespace CleanAndFix.Utils
                 Entity entity = transaction.GetObject(entId, OpenMode.ForRead) as Entity;
                 if (entity == null)
                     continue;
-                RotatedDimension dim = entity as RotatedDimension;
+                Dimension dim = entity as Dimension;
                 BlockReference blockRef = entity as BlockReference;
                 if (blockRef != null)
                     ProcessingDwgsColorEntities(blockRef.BlockTableRecord, transaction, colorFunc);
@@ -73,7 +73,7 @@ namespace CleanAndFix.Utils
             }
         }
 
-        private static void ProcessingEntityColor(Func<Color, Color> colorFunc, Entity entity, Transparency trans, RotatedDimension dim)
+        private static void ProcessingEntityColor(Func<Color, Color> colorFunc, Entity entity, Transparency trans, Dimension dim)
         {
             if (!entity.Color.IsByLayer)
             {
