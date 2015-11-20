@@ -22,10 +22,10 @@ namespace CleanAndFix.Tools
             Document doc = Application.DocumentManager.MdiActiveDocument;
             Database database = doc.Database;
 
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
+            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
             if (_layerName != null)
             {
-                _display = true;
+                _display = false;
                 FilterDwg(database);
             }
         }
@@ -36,10 +36,10 @@ namespace CleanAndFix.Tools
             Document doc = Application.DocumentManager.MdiActiveDocument;
             Database database = doc.Database;
 
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
+            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
             if (_layerName != null)
             {
-                _display = true;
+                _display = false;
                 DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
             }
         }
@@ -50,10 +50,10 @@ namespace CleanAndFix.Tools
             Document doc = Application.DocumentManager.MdiActiveDocument;
             Database database = doc.Database;
 
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
+            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
             if (_layerName != null)
             {
-                _display = false;
+                _display = true;
                 FilterDwg(database);
             }
         }
@@ -64,10 +64,10 @@ namespace CleanAndFix.Tools
             Document doc = Application.DocumentManager.MdiActiveDocument;
             Database database = doc.Database;
 
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
+            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
             if (_layerName != null)
             {
-                _display = false;
+                _display = true;
                 DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
             }
         }
@@ -81,14 +81,14 @@ namespace CleanAndFix.Tools
                 foreach (ObjectId id in layerTb)
                 {
                     LayerTableRecord layer = transaction.GetObject(id, OpenMode.ForWrite) as LayerTableRecord;
-                    if (layer != null && layer.Name.ToLower().Contains(_layerName.ToLower()))
+                    if (layer != null && layer.Name.ToLower().Contains(_layerName.ToLower()) && layer.Name.ToLower() != "defpoints")
                     {
                         if (layer.IsPlottable != _display)
                             layer.IsPlottable = _display;
                         if (layer.IsOff != !_display)
                             layer.IsOff = !_display;
                     }
-                    else if (layer != null)
+                    else if (layer != null && layer.Name.ToLower() != "defpoints")
                     {
                         if (layer.IsPlottable != !_display)
                             layer.IsPlottable = !_display;
