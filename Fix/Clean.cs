@@ -38,7 +38,7 @@ namespace CleanAndFix.Fix
             {
                 CleanLayers(database, transaction);
                 EraseProxies(database);
-                CleanEntities(database, transaction);
+                //CleanEntities(database, transaction);
                 transaction.Commit();
             }
             return true;
