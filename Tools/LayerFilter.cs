@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Runtime;
 using CleanAndFix.Annotations;
@@ -30,20 +29,6 @@ namespace CleanAndFix.Tools
             }
         }
 
-        [CommandMethod("Fix", "FCFILTERAll", CommandFlags.Transparent), UsedImplicitly]
-        public void FilterAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Database database = doc.Database;
-
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn off layer with it");
-            if (_layerName != null)
-            {
-                _display = false;
-                DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
-            }
-        }
-
         [CommandMethod("Fix", "FCRFILTER", CommandFlags.Transparent), UsedImplicitly]
         public void ReverseFilterCommand()
         {
@@ -58,21 +43,7 @@ namespace CleanAndFix.Tools
             }
         }
 
-        [CommandMethod("Fix", "FCRFILTERAll", CommandFlags.Transparent), UsedImplicitly]
-        public void ReverseFilterAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Database database = doc.Database;
-
-            _layerName = EditorUtils.GetTextFromEditor(doc.Editor, "Enter keyword to turn on layer with it");
-            if (_layerName != null)
-            {
-                _display = true;
-                DwgUtils.ExecuteForeach(FilterDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
-            }
-        }
-
-        private bool FilterDwg(Database database)
+        private void FilterDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())
             {
@@ -98,7 +69,6 @@ namespace CleanAndFix.Tools
                 }
                 transaction.Commit();
             }
-            return true;
         }
     }
 }

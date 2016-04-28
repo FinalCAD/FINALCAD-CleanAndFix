@@ -23,15 +23,6 @@ namespace CleanAndFix.Fix
                 Application.ShowAlertDialog("An error occurred!");
         }
 
-        [CommandMethod("Fix", "FCDYNTOSTATICALL", CommandFlags.Transparent), UsedImplicitly]
-        public void DynToStaticAllCommmand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Database database = doc.Database;
-
-            DwgUtils.ExecuteForeach(DynToStaticDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
-        }
-
         private bool DynToStaticDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())

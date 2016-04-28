@@ -23,14 +23,6 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "FCGRAYSCALEALL", CommandFlags.Modal), UsedImplicitly]
-        public void GrayscaleAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-
-            DwgUtils.ExecuteForeach(GrayscaleDwg, DwgUtils.GetRelatedDwgs(doc.Database));
-        }
-
         private bool GrayscaleDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())

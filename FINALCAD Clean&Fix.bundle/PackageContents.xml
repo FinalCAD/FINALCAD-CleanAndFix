@@ -1,20 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="AutoCAD" ProductType="Application" Name="FINALCAD Clean&amp;Fix" AppVersion="1.0.1" Description="FINALCAD Clean and Fix tools" Author="Mathieu Bourgois" Icon="./Contents/Resources/cleanfix.png" AppNameSpace="CleanAndFix" OnlineDocumentation=" " HelpFile=" " ProductCode="{352E2FEA-E052-4674-9FA6-2A9591CB8300}" UpgradeCode="{53252E93-BF67-4328-BA67-179EEDAC95FE}" SupportedLocales="Enu">
+<ApplicationPackage SchemaVersion="1.0" AutodeskProduct="AutoCAD" ProductType="Application" Name="FINALCAD Clean&amp;Fix" AppVersion="1.0.0" Description="FINALCAD Clean and Fix tools" Author="Knowledge Corp" Icon="./Contents/Resources/cleanfix.png" AppNameSpace="CleanAndFix" OnlineDocumentation=" " HelpFile=" " ProductCode="{352E2FEA-E052-4674-9FA6-2A9591CB8300}" UpgradeCode="{53252E93-BF67-4328-BA67-179EEDAC95FE}" SupportedLocales="Enu">
   <CompanyDetails Name="Knowledge Corp" Phone=" " Url=" www.finalcad.com" Email="contact@finalcad.com" />
   <RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD|AutoCAD*" SeriesMin="19.1" SeriesMax="R20.1" />
   <Components Description="AutoCAD 2014">
     <RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD*|AutoCAD" SeriesMin="R19.1" SeriesMax="R19.1" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/Windows/2014/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/Windows/2014/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
   </Components>
   <Components Description="AutoCAD 2015">
     <RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD*|AutoCAD" SeriesMin="R20.0" SeriesMax="R20.0" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/Windows/2015/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/Windows/2015/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
   </Components>
   <Components Description="AutoCAD 2016">
     <RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD*|AutoCAD" SeriesMin="R20.1" SeriesMax="R20.1" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/Windows/2016/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
-    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.1" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/Windows/2016/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+  </Components>
+  <Components Description="AutoCAD 2017">
+    <RuntimeRequirements OS="Win32|Win64" Platform="AutoCAD*|AutoCAD" SeriesMin="R21.0" SeriesMax="R21.0" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/Windows/2017/CleanAndFix.dll" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
+    <ComponentEntry AppName="FINALCAD Clean&amp;Fix" Version="1.0.0" ModuleName="./Contents/CleanFix.cuix" ModuleNameFra="./Contents/CleanFix.cuix" AppDescription="FINALCAD Clean And Fix tools" LoadOnAutoCADStartup="True" />
   </Components>
 </ApplicationPackage>

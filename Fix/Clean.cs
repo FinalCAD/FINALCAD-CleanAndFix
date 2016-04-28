@@ -23,15 +23,6 @@ namespace CleanAndFix.Fix
                 Application.ShowAlertDialog("An error occurred!"); 
         }
 
-        [CommandMethod("Fix", "FCCLEANALL", CommandFlags.Transparent), UsedImplicitly]
-        public void CleanAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-            Database database = doc.Database;
-
-            DwgUtils.ExecuteForeach(CleanDwg, DwgUtils.GetFolderDwgs(database, SearchOption.AllDirectories));
-        }
-
         private bool CleanDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())

@@ -24,14 +24,6 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("An error occurred!"); 
         }
 
-        [CommandMethod("GRAPHICSPLAN", "FCBLACKALL", CommandFlags.Transparent), UsedImplicitly]
-        public void BlackAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-
-            DwgUtils.ExecuteForeach(BlackDwg, DwgUtils.GetRelatedDwgs(doc.Database));
-        }
-
         private bool BlackDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())

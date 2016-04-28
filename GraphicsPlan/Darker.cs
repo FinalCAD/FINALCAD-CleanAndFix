@@ -25,14 +25,6 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "FCDARKERALL", CommandFlags.Modal), UsedImplicitly]
-        public void DarkerAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-
-            DwgUtils.ExecuteForeach(DarkerDwg, DwgUtils.GetRelatedDwgs(doc.Database));
-        }
-
         private bool DarkerDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())

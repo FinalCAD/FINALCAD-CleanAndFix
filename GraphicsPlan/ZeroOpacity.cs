@@ -23,14 +23,6 @@ namespace CleanAndFix.GraphicsPlan
                 Application.ShowAlertDialog("Une erreur est survenue.");
         }
 
-        [CommandMethod("GRAPHICSPLAN", "FCZEROOPACITYALL", CommandFlags.Modal), UsedImplicitly]
-        public void ZeroOpacityAllCommand()
-        {
-            Document doc = Application.DocumentManager.MdiActiveDocument;
-
-            DwgUtils.ExecuteForeach(ZeroOpacityDwg, DwgUtils.GetRelatedDwgs(doc.Database));
-        }
-
         private bool ZeroOpacityDwg(Database database)
         {
             using (Transaction transaction = database.TransactionManager.StartTransaction())
