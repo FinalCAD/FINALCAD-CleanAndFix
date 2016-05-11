@@ -4,25 +4,19 @@
 FINALCAD provides the “Clean & Fix” plugin which allows you to clean and enhance readability for any kind of AutoCAD blueprint.
 The “Clean & Fix” plugin can be found on the [AUTODESK APP STORE](http://finalb.im/1sddNpC "FINALCAD on the AUTODESK APP STORE") for free and open source ;).
 
-## General Usage Instructions
-
-FINALCAD Clean & Fix will allow a user to work with an external drawing in the quickest way.
-If the user need to do some modification on the plan, the FCCLEAN command will allow to erase all potential errors.
-DARKER, BLACK, GRAYSCALE and ZEROOPACITY is usefull if you need to have a bette view before a ploting on paper, and working with a white background.
-
 ## Commands
 
 | Ribbon/Toolbar Icon | Command | Command Description |
 |---|---|---|
-| ![clean](http://finalcad.fr/autonomy/Ribbon/Clean.png) | FCCLEAN |  FcClean will execute different procedures to correct the plan and make it easier editiable / usable: Reconcile & unlock all layers, Erase proxies, Clean Entities  |
-| ![FCDYNTOSTATIC](http://finalcad.fr/autonomy/Ribbon/Dynamic2Static.png) | FCDYNTOSTATIC | FcDynToStatic will modify all dynamic entities to a static one.|
-| ![FCBLACK](http://finalcad.fr/autonomy/Ribbon/Black.png) | FCBLACK | FcBlack will change all drawing colors to black |
-| ![FCDARKER](http://finalcad.fr/autonomy/Ribbon/Darker.png) | FCDARKER | FcDarker will change all drawing colors to darker (30% max luminosity) |
-| ![FCGRAYSCALE](http://finalcad.fr/autonomy/Ribbon/Grayscale.png) | FCGRAYSCALE | FcGrayscale will change all drawing colors to grayscale |
-| ![FCZEROOPACITY](http://finalcad.fr/autonomy/Ribbon/ZeroOpacity.png) | FCZEROOPACITY | FcZeroOpacity will remove all transparencies in the drawing. |
-| ![FCFILTER](http://finalcad.fr/autonomy/Ribbon/LayerFilter.png) | FCFILTER | FcFilter turn off all layer contain the specified keword define by the user. |
-| ![FCRFILTER](http://finalcad.fr/autonomy/Ribbon/ReverseLayerFilter.png) | FCRFILTER | FcRFilter turn on all layer contain the specified keword define by the user. |
-| ![FCMERGETEXT](http://finalcad.fr/autonomy/Ribbon/MergeText.png) | FCMERGETEXT | FcMergeText will merge all selected texts to a new one. |
+| ![clean](http://finalcad.fr/autonomy/Ribbon/Clean.png) | FCCLEAN |  FCCLEAN will execute different procedures to correct the plan and make it easier editiable / usable: Reconcile & unlock all layers, Erase proxies, Clean Entities  |
+| ![FCDYNTOSTATIC](http://finalcad.fr/autonomy/Ribbon/Dynamic2Static.png) | FCDYNTOSTATIC | FCDYNTOSTATIC will modify all dynamic entities to a static one.|
+| ![FCBLACK](http://finalcad.fr/autonomy/Ribbon/Black.png) | FCBLACK | FCBLACK will change all drawing colors to black |
+| ![FCDARKER](http://finalcad.fr/autonomy/Ribbon/Darker.png) | FCDARKER | FCDARKER will change all drawing colors to darker (30% max luminosity) |
+| ![FCGRAYSCALE](http://finalcad.fr/autonomy/Ribbon/Grayscale.png) | FCGRAYSCALE | FCGRAYSCALE will change all drawing colors to grayscale |
+| ![FCZEROOPACITY](http://finalcad.fr/autonomy/Ribbon/ZeroOpacity.png) | FCZEROOPACITY | FCZEROOPACITY will remove all transparencies in the drawing. |
+| ![FCFILTER](http://finalcad.fr/autonomy/Ribbon/LayerFilter.png) | FCFILTER | FCFILTER turn off all layer contain the specified keword define by the user. |
+| ![FCRFILTER](http://finalcad.fr/autonomy/Ribbon/ReverseLayerFilter.png) | FCRFILTER | FCRFILTER turn on all layer contain the specified keword define by the user. |
+| ![FCMERGETEXT](http://finalcad.fr/autonomy/Ribbon/MergeText.png) | FCMERGETEXT | FCMERGETEXT will merge all selected texts to a new one. |
 
 ## Installation/Uninstallation
 ###### Installation
@@ -33,7 +27,8 @@ To uninstall this plug-in, click Control Panel > Programs > Programs and Feature
 ## Contact
 http://www.finalcad.com/contact
 ### Author/Company Information
-FINALCAD is a mobile and predictive analytics platform that helps anticipate and fix all issues found during the building’s journey. Our mission : increase quality, reduce its cost and make it accessible to all. Since 2011, FINALCAD has helped more than 8,000 projects in 30 countries, and keeps on advancing the digital transition of the construction industry.
+FINALCAD is a mobile and predictive analytics platform that helps anticipate and fix all issues found during the building’s journey. Our mission : increase quality, reduce its cost and make it accessible to all. 
+Since 2011, FINALCAD has helped more than 8,000 projects in 30 countries, and keeps on advancing the digital transition of the construction industry.
 
 ### Support Information
 Email: autodesk@finalcad.com
