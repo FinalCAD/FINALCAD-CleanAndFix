@@ -1,8 +1,8 @@
-# FINALCAD-CleanAndFix
-AutoCAD plugin with useful commands to clean and fix plans.
+# FINALCAD - Clean & Fix
+###### AutoCAD plugin with powerful commands to clean and fix plans.
 
-FINALCAD provides free of charge and as open source software, the “Clean & Fix” plugin, allowing the cleaning and readability enhancements for any kind of AutoCAD blueprint.
-AutoCAD plugin can be found here: https://apps.autodesk.com/ACD/fr/Detail/Index?id=appstore.exchange.autodesk.com%3afinalcadcleanfix_windows32and64%3aen
+FINALCAD provides the “Clean & Fix” plugin which allows you to clean and enhance readability for any kind of AutoCAD blueprint.
+The “Clean & Fix” plugin can be found on the [AUTODESK APP STORE](http://finalb.im/1sddNpC "FINALCAD on the AUTODESK APP STORE") for free and open source ;).
 
 ## General Usage Instructions
 
@@ -25,13 +25,15 @@ DARKER, BLACK, GRAYSCALE and ZEROOPACITY is usefull if you need to have a bette 
 | ![FCMERGETEXT](http://finalcad.fr/autonomy/Ribbon/MergeText.png) | FCMERGETEXT | FcMergeText will merge all selected texts to a new one. |
 
 ## Installation/Uninstallation
-
-The installer that ran when you downloaded this plug-in from Autodesk Exchange Apps has already installed the plug-in. You may need to restart the Autodesk product to activate the plug-in. To uninstall this plug-in, click Control Panel > Programs > Programs and Features (Windows 7/8/8.1) or Control Panel > Add or Remove Programs (Windows XP), and uninstall as you would any other application from your system.
+###### Installation
+The installer that ran when you downloaded this plug-in from Autodesk Exchange Apps has already installed the plug-in. You may need to restart the Autodesk product to activate the plug-in. 
+###### Uninstallation
+To uninstall this plug-in, click Control Panel > Programs > Programs and Features (Windows 7/8/8.1) or Control Panel > Add or Remove Programs (Windows XP), and uninstall as you would any other application from your system.
 
 ## Contact
-http://www.finalcad.com/
-###Author/Company Information
-"Change the way we build." FINALCAD is a mobile and predictive analytics platform that helps anticipate and fix all issues found during the building’s journey. Our mission : increase quality, reduce its cost and make it accessible to all. Since 2011, FINALCAD has helped more than 6,000 projects in 25 countries, and keeps on advancing the digital transition of the construction industry.
+http://www.finalcad.com/contact
+### Author/Company Information
+FINALCAD is a mobile and predictive analytics platform that helps anticipate and fix all issues found during the building’s journey. Our mission : increase quality, reduce its cost and make it accessible to all. Since 2011, FINALCAD has helped more than 8,000 projects in 30 countries, and keeps on advancing the digital transition of the construction industry.
 
-###Support Information
+### Support Information
 Email: autodesk@finalcad.com
